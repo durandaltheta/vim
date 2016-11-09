@@ -1,6 +1,12 @@
 #!/bin/bash 
+username="$1"
 
-username=`whoami`
+if [ -z "$username" ];
+then
+   username=`whoami`
+fi
+
+echo "username:"$username
 
 cp -rf .vim /home/$username/ 
 cp -f .vimrc /home/$username/ 

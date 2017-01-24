@@ -6,13 +6,14 @@ then
    username=`whoami`
 fi
 
-echo "username:"$username
+echo "\$HOME:$HOME"
+echo "\$username:$username"
 
-cp -rf .vim /home/$username/ 
-cp -f .vimrc /home/$username/ 
+cp -rf .vim $HOME/ 
+cp -f .vimrc $HOME/ 
 
 
-chown -R $username:$username /home/$username/.vim 
-chown $username:$username /home/$username/.vimrc
+chown -R $username:$username $HOME/.vim 
+chown $username:$username $HOME/.vimrc
 
 echo "done installing cusom vim files"

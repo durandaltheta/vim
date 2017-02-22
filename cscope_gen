@@ -1,0 +1,18 @@
+ROOT_PATH=$PWD
+SRC_PATH=$ROOT_PATH/MY20
+
+cd $ROOT_PATH
+rm -f cscope.files cscope.in.out cscope.out cscope.po.out
+                                                                                      
+find $SRC_PATH                                                                        \
+    -path "$SRC_PATH/OS_Boost*" -prune -o                                             \
+    -ipath "$SRC_PATH/ref*" -prune -o                                                 \
+    -ipath "$SRC_PATH/*_ref" -prune -o                                                \
+    -ipath "$SRC_PATH/UT_*" -prune -o                                                 \
+    -ipath "$SRC_PATH/TE_*" -prune -o                                                 \
+    -ipath "$SRC_PATH/Telenav/thirdparty/boost_1_55*" -prune -o                       \
+    -ipath "$SRC_PATH/NativeServices/inc/boost*" -prune -o                            \
+    -ipath "$SRC_PATH/NNG/thirdparty/boost_1_55*" -prune -o                           \
+    -ipath "$SRC_PATH/test_*" -prune -o -print | grep -E ".*\.(c|cc|cpp|h|hh|hpp)$" | awk '{print "\""$0"\""}' > cscope.files
+
+cscope -b -q

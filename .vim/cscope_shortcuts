@@ -1,0 +1,25 @@
+
+inform vim of cscope.out:
+-------------------------
+:cs add /path/to/cscope.out 
+
+command prefixes:
+-----------------
+CTRL-\ # do command in current window
+CTRL-SPACE # do command in new split window 
+CTRL-SPACE CTRL-SPACE # do command 
+CTRL-t # jump back to previous file
+
+search methods:
+---------------
+s # usages
+g # declaration 
+f # header file 
+
+final command:
+--------------
+# when hovering over a word
+[command prefix][search method] 
+
+Examples:
+CTRL-\s # search for usages of word and jump to specified location in current window

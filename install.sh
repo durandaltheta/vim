@@ -9,7 +9,7 @@ sudo apt update
 sudo apt install lxde lxsession openbox lxsession-logout
 
 # install utils
-sudo apt install vim make cmake gcc git gawk wget build-essential guake cpio curl autoconf automake flex
+sudo apt install vim make cmake gcc git gawk wget build-essential guake cpio curl autoconf automake flex libncurses5-dev libncursesw5-dev
 
 # setup guake to autostart
 sudo cp /usr/share/applications/guake.desktop /etc/xdg/autostart/ 

@@ -1,22 +1,25 @@
 #!/bin/bash 
-username="$1"
-
-if [ -z "$username" ];
-then
-   username=`whoami`
-fi
 
 echo "\$HOME:$HOME"
 echo "\$username:$username"
 
-cp -rf .vim $HOME/ 
-cp -f .vimrc $HOME/ 
+sudo apt update
 
-# copy cscope_gen script to local executables directory
-sudo -E cp cscope_gen /usr/local/bin
+# install gui
+sudo apt install lxde lxsession openbox lxsession-logout
 
-# make sure the files are owned by the correct person
-chown -R $username:$username $HOME/.vim 
-chown $username:$username $HOME/.vimrc
+# install utils
+sudo apt install vim make cmake gcc git gawk wget build-essential guake cpio curl autoconf automake flex
 
-echo "done installing cusom vim files"
+# setup guake to autostart
+sudo cp /usr/share/applications/guake.desktop /etc/xdg/autostart/ 
+
+# install vim settings 
+./install_vim.sh
+
+# Don't uncomment, helpful reference for setting up shared folders
+#mkdir $HOME/s
+#mkdir $HOME/c_dir
+#sudo echo -e "#!/bin/bash\nmount -t vboxsf Documents ~/s > /usr/local/bin/setup_share
+#sudo echo -e "mount -t vboxsf C_DIR ~/c_dir" >> /usr/local/bin/setup_share
+

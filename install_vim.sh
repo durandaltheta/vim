@@ -43,4 +43,4 @@ sudo chmod +x /usr/local/bin/cscope_gen
 chown -R $username:$username $HOME/.vim 
 chown $username:$username $HOME/.vimrc
 
-echo "done installing cusom vim files"
+echo "done installing custom vim files"

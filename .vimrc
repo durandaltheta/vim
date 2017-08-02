@@ -244,3 +244,4 @@ filetype plugin indent on
 set tags=./tags;
 
 map <F5> <C-W>_<C-W><Bar>
+let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'

@@ -1,128 +1,37 @@
 "NERDTree
+"AutoComplPop
+"syntastic 
 "ctags
 "EasyMotion
 "NERDCommenter
-"SimpylFold
-"IndentPython
-"YouCompleteMe
-"syntastic
-"vim-flake8
-"ctrlp (ctrl+p to search for basically anything)
-
-"REPLACED MODULES
-"AutoComplPop REPLACED WITH 'YouCompleteMe'
-"syntastic REPLACED WITH Vundle managed 'syntastic'
-
-
-"set nocompatible 
-
-
-"PYTHON & VUNDLE VIMRC BEGINS HERE
-"---------------------------------
-set nocompatible              " required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" Add all your plugins here (note older versions of Vundle used Bundle
-" instead of Plugin) 
-
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'nvie/vim-flake8'
-"Plugin 'jnurmine/Zenburn'
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'kien/ctrlp.vim'
-
-
-" All of your Plugins must be added before the following line
- call vundle#end()            " required
- filetype plugin indent on    " required  
 
 "Highlight text over 80 characters in length
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-"SimplyFold see docstrings for folded code
-let g:SimpylFold_docstring_preview=1
+set nocompatible
 
-"PEP8 python specific
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
-
-"Reveal unnecessary whitespace in python scripts
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-"Proper indentation for web files
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-"autocomplete settings 
-let g:ycm_autoclose_preview_window_after_completion=1 "autoclose the autocomplete window
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"Prettyify my code with color
-let python_highlight_all=1
-syntax on
-
-"Manage color schemes
-"if has('gui_running')
-"    set background=dark
-"    colorscheme solarized
-"else
-"    colorscheme zenburn 
-"endif
-
-"ORIGINAL VIMRC BEGINS HERE
-"--------------------------
 set modelines=0
 
-" Enable code section folding 
-set foldmethod=indent
-set foldlevel=99
-nnoremap <space> za
-
-"Default indentation
 set tabstop=4
-set softtabstop=4
+
 set shiftwidth=4
+
+set softtabstop=4
+
 set expandtab
+
 set smartindent
-set autoindent
-set copyindent
+
 imap <C-Return> <CR><CR><C-o>k<Tab>
 
 set encoding=utf-8
 
 set scrolloff=3
+
+set autoindent
+
+set copyindent
 
 set showmode
 
@@ -152,6 +61,10 @@ nnoremap \ :NERDTreeToggle
 
 let g:EasyMotion_leader_key = '<Leader>'
 
+"nnoremap / /\v
+
+"vnoremap / /\v
+
 set ignorecase
 
 set smartcase
@@ -163,7 +76,8 @@ set incsearch
 set showmatch
 
 set hlsearch
-nnoremap <leader><space> :noh<cr>
+
+"nnoremap <leader><space> :noh<cr>
 
 nnoremap <tab> %
 
@@ -193,6 +107,14 @@ nnoremap <c-up> <c-w>+
 
 nnoremap <c-=> <c-w>=
 
+"inoremap <up> <nop>
+
+"inoremap <down> <nop>
+
+"inoremap <left> <nop>
+
+"inoremap <right> <nop>
+
 nnoremap j gj
 
 nnoremap k gk
@@ -206,6 +128,8 @@ vnoremap <F1> <ESC>
 nnoremap ; :
 
 au FocusLost * :wa
+
+"nnoremap <leader>w <C-w>v<C-w>l
 
 nnoremap <leader> <plug>(easymotion-prefix)
 
@@ -233,7 +157,21 @@ set splitbelow
 
 set splitright
 
+"map <leader>t NERDTreeToggle
+
+"set statusline+=%#warningmsg#
+
+"set statusline+=%{SyntasticStatuslineFlag()}
+
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list =1
+
+"let g:syntastic_auto_loc_list = 1
+
 let g:syntastic_check_on_open = 1
+
+"let g:syntastic_check_on_wq = 0
 
 " Pathogen
 execute pathogen#infect()

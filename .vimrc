@@ -9,6 +9,12 @@
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+if has("win32")
+    colorscheme torte 
+
+    set guifont=Courier_New
+endif
+
 set nocompatible
 
 set modelines=0

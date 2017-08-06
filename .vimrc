@@ -9,6 +9,8 @@
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+colorscheme torte
+
 set nocompatible
 
 set modelines=0

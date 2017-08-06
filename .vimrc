@@ -9,12 +9,6 @@
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
-if has("win32")
-    colorscheme torte 
-
-    set guifont=Courier_New
-endif
-
 set nocompatible
 
 set modelines=0
@@ -188,4 +182,4 @@ filetype plugin indent on
 set tags=./tags;
 
 map <F5> <C-W>_<C-W><Bar>
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.vim/slime/start-swank.lisp &'

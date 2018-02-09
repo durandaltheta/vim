@@ -5,9 +5,13 @@
 "EasyMotion
 "NERDCommenter
 
+"create column at column 80
+:set colorcolumn=80
+:highlight ColorColumn ctermbg=red guibg=red
+
 "Highlight text over 80 characters in length
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 " sets the gvim (graphical vim) colorscheme. Does nothing in console vim
 colorscheme torte

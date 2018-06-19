@@ -14,7 +14,7 @@
 "match OverLength /\%81v.\+/
 
 " sets the gvim (graphical vim) colorscheme. Does nothing in console vim
-colorscheme torte
+colorscheme evening
 
 " enables text coloring! Incredibly useful for reading
 syntax on 
@@ -279,3 +279,14 @@ map <F5> <C-W>_<C-W><Bar>
 "REPL integration, which is basically 100% of slimv does so we include it here!
 let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.vim/slime/start-swank.lisp &'
 
+set termguicolors
+
+"automatically start with NERDTree drawer open
+autocmd VimEnter * NERDTreeToggle
+
+"GUI ONLY
+if has("gui_running")
+    set guioptions -=T
+    set guifont=Fixedsys:h11
+    au GUIEnter * simalt ~x
+endif

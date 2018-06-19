@@ -122,12 +122,6 @@ let mapleader = ","
 " theoretically great.
 nnoremap \ :NERDTreeToggle
 
-" sets search to 'very magic mode'. Theoretically helps by automagically
-" knowing what certain things are (like spaces being spaces instead of having
-" to do a '\ ')
-nnoremap / /\v
-vnoremap / /\v
-
 " ignore case in search patterns. This is sane behavior 99% of the time when
 " I do a blanket search with all lowercase
 set ignorecase
@@ -247,6 +241,8 @@ nnoremap <c-h> ^
 " ctrl+l: go to the end of the line
 nnoremap <c-l> $
 
+"
+
 " when creating a horizontal split the new window will appear below instead of
 " above your current window
 set splitbelow
@@ -282,7 +278,29 @@ let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.vim/slime/start-swank.lisp &'
 set termguicolors
 
 "automatically start with NERDTree drawer open
-autocmd VimEnter * NERDTreeToggle
+autocmd VimEnter * NERDTreeToggle 
+
+"0 or s: Find this C symbol
+nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+"1 or g: Find this definition
+nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+"2 or d: Find functions called by this function
+nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+"3 or c: Find functions calling this function
+nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+"4 or t: Find this text string
+nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+"6 or e: Find this egrep pattern
+nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+"7 or f: Find this file
+nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+"8 or i: Find files #including this file
+nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"9 or a: Find places where this symbol is assigned a value
+nnoremap <C-[>a :cs find a <C-R>=expand("<cword>")<CR>$<CR>
+
+nnoremap <leader>s :cs add cscope.out
+au VimEnter * add cscope.out
 
 "GUI ONLY
 if has("gui_running")

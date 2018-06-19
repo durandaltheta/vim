@@ -1,26 +1,46 @@
 #!/bin/bash 
+username="$1"
+
+if [ -z "$username" ];
+then
+   username=`whoami`
+fi
 
 echo "\$HOME:$HOME"
 echo "\$username:$username"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-sudo apt update
+cp -rf .vim $HOME/ 
+cp -f .vimrc $HOME/ 
 
-# install gui
-sudo apt install lxde lxsession openbox lxsession-logout
+# copy cscope_gen script to local executables directory
+sudo -E cp $SCRIPT_DIR/cscope_gen /usr/local/bin 
+sudo chmod +x /usr/local/bin/cscope_gen
+#sudo chown $username:$username /usr/local/bin/cscope_gen
 
-# install utils
-#sudo apt install vim make cmake gcc git gawk wget build-essential guake cpio curl autoconf automake flex libncurses5-dev libncursesw5-dev
-sudo apt install vim make cmake gcc git gawk wget build-essential guake cpio curl autoconf cscope
+# compile and install cscope 
+#CUR_DIR=`pwd`
+#sudo chown -R $username:$username $SCRIPT_DIR/cscope-15.8b
+#cd $SCRIPT_DIR/cscope-15.8b 
+##touch aclocal.m4
+##touch Makefile.am
+##touch configure.ac 
+#aclocal 
+#automake  --add-missing
+#autoconf
+##sudo ln -s /usr/bin/automake-1.15 /usr/bin/automake-1.14
+##sudo ln -s /usr/bin/aclocal-1.15 /usr/bin/aclocal-1.14
+#chmod +x ./configure
+#chmod +x ./install-sh
+#pwd
+#sudo ./configure
+#make 
+#sudo make install
+#cd $CUR_DIR
 
-# setup guake to autostart
-sudo cp /usr/share/applications/guake.desktop /etc/xdg/autostart/ 
 
-# install vim settings 
-./install_vim.sh
+# make sure the files are owned by the correct person
+chown -R $username:$username $HOME/.vim 
+chown $username:$username $HOME/.vimrc
 
-# Don't uncomment, helpful reference for setting up shared folders
-#mkdir $HOME/s
-#mkdir $HOME/c_dir
-#sudo echo -e "#!/bin/bash\nmount -t vboxsf Documents ~/s > /usr/local/bin/setup_share
-#sudo echo -e "mount -t vboxsf C_DIR ~/c_dir" >> /usr/local/bin/setup_share
-
+echo "done installing custom vim files"

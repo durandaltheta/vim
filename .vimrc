@@ -277,19 +277,27 @@ let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.vim/slime/start-swank.lisp &'
 
 set termguicolors
 
-"automatically start with NERDTree drawer open
-autocmd VimEnter * NERDTreeToggle 
+"Goto ctag def
+menu Tags.Goto\ Definition<tab><C-]> <C-]>
+menu PopUp.Goto\ Definition<tab><C-]> <C-]>
 
 "0 or s: Find this C symbol
 nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+menu Tags.Goto\ Symbol\ Usages<tab><C-[>s <C-[>s
+menu PopUp.Goto\ Symbol\ Usages<tab><C-[>s <C-[>s
 "1 or g: Find this definition
 nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+menu Tags.Goto\ Cscope\ Definition<tab><C-[>g <C-[>g
 "2 or d: Find functions called by this function
 nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 "3 or c: Find functions calling this function
 nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+menu Tags.Goto\ Function\ Usages<tab><C-[>c <C-[>c
+menu PopUp.Goto\ Function\ Usages<tab><C-[>c <C-[>c
 "4 or t: Find this text string
 nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+menu Tags.Goto\ Text\ Usages<tab><C-[>t <C-[>t
+menu PopUp.Goto\ Text\ Usages<tab><C-[>t <C-[>t
 "6 or e: Find this egrep pattern
 nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
 "7 or f: Find this file
@@ -299,12 +307,53 @@ nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "9 or a: Find places where this symbol is assigned a value
 nnoremap <C-[>a :cs find a <C-R>=expand("<cword>")<CR>$<CR>
 
-nnoremap <leader>s :cs add cscope.out
-au VimEnter * add cscope.out
+"if has('win32')
+    "function! LoadCscope()
+        "if (executable("cscope") && has("cscope"))
+            "let UpperPath = findfile("cscope.out", ".;")
+            "if (!empty(UpperPath))
+                "let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)	
+                "if (!empty(path))
+                    "let s:CurrentDir = getcwd()
+                    "let direct = strpart(s:CurrentDir, 0, 2) 
+                    "let s:FullPath = direct . path
+                    "let s:AFullPath = globpath(s:FullPath, "cscope.out")
+                    "let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath 
+                    "execute s:CscopeAddString 
+                "endif
+            "endif
+        "endif
+    "endfunction
+"else
+function! LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+        " else add the database pointed to by environment variable 
+    elseif $CSCOPE_DB != "" 
+        cs add $CSCOPE_DB
+    endif
+endfunction 
+"endif
+command LoadCscope call LoadCscope()
+
+au BufEnter /* call LoadCscope()
 
 "GUI ONLY
 if has("gui_running")
+
+    "automatically start with NERDTree drawer open
+    autocmd VimEnter * NERDTreeToggle 
+
     set guioptions -=T
     set guifont=Fixedsys:h11
     au GUIEnter * simalt ~x
-endif
+
+    cd d:\work\FORDSYNC3\
+endif 
+
+au BufEnter /* e ++ff=dos 
+

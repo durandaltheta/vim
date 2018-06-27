@@ -2,7 +2,7 @@ import glob, os, re, argparse
 from datetime import datetime
 
 cfilelist_name = 'cfiles.txt'
-sane_ignore = 'boost NS_ SS_ NativeServices QNX_SDK RCN bld bin qt5binaries'
+sane_ignore = ''
 
 def parseArgs():
     global cfilelist_name

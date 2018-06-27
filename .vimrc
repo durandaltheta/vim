@@ -118,8 +118,7 @@ set laststatus=2
 " default command)
 let mapleader = ","
 
-" Toggle NERDTree file window with backslash. Don't really use but
-" theoretically great.
+" Toggle NERDTree file window with backslash. 
 nnoremap \ :NERDTreeToggle
 
 " ignore case in search patterns. This is sane behavior 99% of the time when
@@ -217,7 +216,8 @@ let g:EasyMotion_leader_key = '<Leader>'
 nnoremap <leader> <plug>(easymotion-prefix)
 
 " set j+j (pressing 'j' twice) to exit text edit mode
-inoremap jj <ESC>
+"inoremap jj <ESC>
+inoremap jk <ESC>
 
 " toggle search highlighting with the F3 key
 nnoremap <F3> :set hlsearch!<CR>
@@ -257,9 +257,6 @@ set splitright
 " some kind of important option for the syntastic code syntax plugin
 let g:syntastic_check_on_open = 1
 
-" Make the Pathogen plugin manager do its thing
-execute pathogen#infect()
-
 " not 100% but seems to control when these vimrc settings are applied when
 " working with different filetypes?
 filetype plugin indent on
@@ -277,10 +274,12 @@ let g:slimv_swank_cmd = '! xterm -e sbcl --load ~/.vim/slime/start-swank.lisp &'
 
 set termguicolors
 
+"Ctags settings
 "Goto ctag def
 menu Tags.Goto\ Definition<tab><C-]> <C-]>
 menu PopUp.Goto\ Definition<tab><C-]> <C-]>
 
+"Cscope settings
 "0 or s: Find this C symbol
 nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
 menu Tags.Goto\ Symbol\ Usages<tab><C-[>s <C-[>s
@@ -307,53 +306,18 @@ nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "9 or a: Find places where this symbol is assigned a value
 nnoremap <C-[>a :cs find a <C-R>=expand("<cword>")<CR>$<CR>
 
-"if has('win32')
-    "function! LoadCscope()
-        "if (executable("cscope") && has("cscope"))
-            "let UpperPath = findfile("cscope.out", ".;")
-            "if (!empty(UpperPath))
-                "let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)	
-                "if (!empty(path))
-                    "let s:CurrentDir = getcwd()
-                    "let direct = strpart(s:CurrentDir, 0, 2) 
-                    "let s:FullPath = direct . path
-                    "let s:AFullPath = globpath(s:FullPath, "cscope.out")
-                    "let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath 
-                    "execute s:CscopeAddString 
-                "endif
-            "endif
-        "endif
-    "endfunction
-"else
-function! LoadCscope()
-    let db = findfile("cscope.out", ".;")
-    if (!empty(db))
-        let path = strpart(db, 0, match(db, "/cscope.out$"))
-        set nocscopeverbose " suppress 'duplicate connection' error
-        exe "cs add " . db . " " . path
-        set cscopeverbose
-        " else add the database pointed to by environment variable 
-    elseif $CSCOPE_DB != "" 
-        cs add $CSCOPE_DB
-    endif
-endfunction 
-"endif
-command LoadCscope call LoadCscope()
-
-au BufEnter /* call LoadCscope()
 
 "GUI ONLY
 if has("gui_running")
-
     "automatically start with NERDTree drawer open
     autocmd VimEnter * NERDTreeToggle 
 
     set guioptions -=T
     set guifont=Fixedsys:h11
     au GUIEnter * simalt ~x
-
-    cd d:\work\FORDSYNC3\
 endif 
 
+"set the file format to dos. Could be dangerous if moving files betwen unix and
+"windows systems? However it fixes the ^M showing up at the end of lines
 au BufEnter /* e ++ff=dos 
 

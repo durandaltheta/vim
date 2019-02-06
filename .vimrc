@@ -43,14 +43,14 @@ set hlsearch " highlight most recent matches to a search, even when the search i
 set wrap " This causes lines to wrap rather than continue offscreen.
 set textwidth=79 " Attempts to breaks text into newlines when you exceed 79 characters
 set formatoptions=qrn1 " internet recommendations for sane default formatting
-set termguicolors "enables color in the terminal. A new feature that may require windows 10
 
 " set our leader key (key that tells vim we're invoking a special non vim
 " default command)
 let mapleader = ","
 
 " Toggle NERDTree file window with backslash. 
-nnoremap \ :NERDTreeToggle
+"nnoremap \ :NERDTreeToggle
+nnoremap \ :Explore
 
 " a fancy hack so to give better handling of indentation and cursor position
 " when pressing enter within parenthesis/curly braces/braces
@@ -188,18 +188,5 @@ nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "9 or a: Find places where this symbol is assigned a value
 nnoremap <C-[>a :cs find a <C-R>=expand("<cword>")<CR>$<CR>
 
-
-"GUI ONLY
-if has("gui_running")
-    "automatically start with NERDTree drawer open
-    autocmd VimEnter * NERDTreeToggle 
-
-    set guioptions -=T
-    set guifont=Fixedsys:h11
-    au GUIEnter * simalt ~x
-endif 
-
-"set the file format to dos. Could be dangerous if moving files betwen unix and
-"windows systems? However it fixes the ^M showing up at the end of lines
-au BufEnter /* e ++ff=dos 
-
+"set ff=dos
+"set ff=unix

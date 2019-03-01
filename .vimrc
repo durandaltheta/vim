@@ -12,6 +12,13 @@
 colorscheme evening " sets the text colorscheme
 syntax on " enables text coloring! Incredibly useful for reading
 
+if has("autocmd")
+    au BufReadPost *.rkt,*.rktl set filetype=scheme
+endif 
+
+"let g:NERDTreeDirArrows=0
+:set encoding=utf-8
+
 set nocompatible " enables full vim mode by disabling vi compatibility
 set modelines=0 " number of lines checked for set commands
 set tabstop=4 " number of spaces that a tab in the file counts for
@@ -43,6 +50,7 @@ set hlsearch " highlight most recent matches to a search, even when the search i
 set wrap " This causes lines to wrap rather than continue offscreen.
 set textwidth=79 " Attempts to breaks text into newlines when you exceed 79 characters
 set formatoptions=qrn1 " internet recommendations for sane default formatting
+set termguicolors "enables color in the terminal. A new feature that may require windows 10
 
 " set our leader key (key that tells vim we're invoking a special non vim
 " default command)
@@ -93,6 +101,7 @@ nnoremap <leader> <plug>(easymotion-prefix)
 
 " set j+j (pressing 'j' twice) to exit text edit mode
 "inoremap jj <ESC>
+inoremap <S-CR> <ESC>
 inoremap jk <ESC>
 
 " toggle search highlighting with the F3 key
@@ -188,5 +197,44 @@ nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "9 or a: Find places where this symbol is assigned a value
 nnoremap <C-[>a :cs find a <C-R>=expand("<cword>")<CR>$<CR>
 
-"set ff=dos
-"set ff=unix
+
+function ToggleFlag(option,flag)
+  exec ('let lopt = &' . a:option)
+  if lopt =~ (".*" . a:flag . ".*")
+    exec ('set ' . a:option . '-=' . a:flag)
+  else
+    exec ('set ' . a:option . '+=' . a:flag)
+  endif
+endfunction
+
+"GUI ONLY
+if has("gui_running")
+    "automatically start with NERDTree drawer open
+    "autocmd VimEnter * NERDTreeToggle 
+
+    set guioptions -=T
+    set guioptions -=m
+    set guioptions-=r
+    set guioptions-=L
+    set guifont=Fixedsys:h11
+    au GUIEnter * simalt ~x
+
+    nnoremap <C-m> :call ToggleFlag("guioptions","m")<CR>
+endif 
+
+"set guifont=Consolas:h11
+"set guifont=Inconsolata:h12
+"set guifont=Ubuntu\ Mono:h12
+:tnoremap <Esc> <C-\><C-n>
+
+autocmd FileType haskell set tabstop=8                   "A tab is 8 spaces
+autocmd FileType haskell set expandtab                   "Always uses spaces instead of tabs
+autocmd FileType haskell set softtabstop=4               "Insert 4 spaces when tab is pressed
+autocmd FileType haskell set shiftwidth=4                "An indent is 4 spaces
+autocmd FileType haskell set shiftround                  "Round indent to nearest shiftwidth multiple
+
+
+"set the file format to dos. Could be dangerous if moving files betwen unix and
+"windows systems? However it fixes the ^M showing up at the end of lines
+"au BufEnter /* e ++ff=dos 
+let g:paredit_mode=0

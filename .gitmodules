@@ -1,0 +1,24 @@
+[submodule ".vim/pack/bundle/start/AutoComplPop"]
+	path = .vim/pack/bundle/start/AutoComplPop
+	url = https://github.com/vim-scripts/AutoComplPop
+[submodule ".vim/pack/bundle/start/lightline.vim"]
+	path = .vim/pack/bundle/start/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule ".vim/pack/bundle/start/nerdcommenter"]
+	path = .vim/pack/bundle/start/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule ".vim/pack/bundle/start/slimv"]
+	path = .vim/pack/bundle/start/slimv
+	url = https://github.com/kovisoft/slimv
+[submodule ".vim/pack/bundle/start/syntastic"]
+	path = .vim/pack/bundle/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic
+[submodule ".vim/pack/bundle/start/vim-cpp-enhanced-highlight"]
+	path = .vim/pack/bundle/start/vim-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight
+[submodule ".vim/pack/bundle/start/vim-multiple-cursors"]
+	path = .vim/pack/bundle/start/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors
+[submodule ".vim/pack/bundle/start/vim-qml"]
+	path = .vim/pack/bundle/start/vim-qml
+	url = https://github.com/peterhoeg/vim-qml

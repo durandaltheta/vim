@@ -22,3 +22,15 @@
 [submodule ".vim/pack/bundle/start/vim-qml"]
 	path = .vim/pack/bundle/start/vim-qml
 	url = https://github.com/peterhoeg/vim-qml
+[submodule ".vim/pack/bundle/start/gruvbox"]
+	path = .vim/pack/bundle/start/gruvbox
+	url = https://github.com/morhetz/gruvbox
+[submodule ".vim/pack/bundle/start/onedark.vim"]
+	path = .vim/pack/bundle/start/onedark.vim
+	url = https://github.com/joshdick/onedark.vim
+[submodule ".vim/pack/bundle/start/vim-solarized8"]
+	path = .vim/pack/bundle/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8
+[submodule ".vim/pack/bundle/start/vim-gotham"]
+	path = .vim/pack/bundle/start/vim-gotham
+	url = https://github.com/whatyouhide/vim-gotham

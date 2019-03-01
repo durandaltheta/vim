@@ -217,6 +217,7 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
     set guifont=Fixedsys:h11
+    colorscheme onedark
     au GUIEnter * simalt ~x
 
     nnoremap <C-m> :call ToggleFlag("guioptions","m")<CR>

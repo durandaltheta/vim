@@ -5,11 +5,15 @@
 "EasyMotion
 "NERDCommenter
 
+packadd! onedark.vim 
+
 "create column at column 80
 :set colorcolumn=80
 :highlight ColorColumn ctermbg=red guibg=red
 
-colorscheme evening " sets the text colorscheme
+"colorscheme evening " sets the text colorscheme
+colorscheme onedark  
+
 syntax on " enables text coloring! Incredibly useful for reading
 
 if has("autocmd")
@@ -58,7 +62,9 @@ let mapleader = ","
 
 " Toggle NERDTree file window with backslash. 
 "nnoremap \ :NERDTreeToggle
-nnoremap \ :Explore
+nnoremap \ :Explore 
+
+nnoremap <leader>t :vertical terminal
 
 " a fancy hack so to give better handling of indentation and cursor position
 " when pressing enter within parenthesis/curly braces/braces
@@ -217,7 +223,6 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
     set guifont=Fixedsys:h11
-    colorscheme onedark
     au GUIEnter * simalt ~x
 
     nnoremap <C-m> :call ToggleFlag("guioptions","m")<CR>

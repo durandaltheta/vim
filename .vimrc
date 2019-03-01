@@ -62,9 +62,9 @@ let mapleader = ","
 
 " Toggle NERDTree file window with backslash. 
 "nnoremap \ :NERDTreeToggle
-nnoremap \ :Explore 
+nnoremap \ :Explore<CR>
 
-nnoremap <leader>t :vertical terminal
+nnoremap <leader>t :vertical terminal<CR>
 
 " a fancy hack so to give better handling of indentation and cursor position
 " when pressing enter within parenthesis/curly braces/braces
